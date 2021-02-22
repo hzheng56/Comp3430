@@ -5,7 +5,7 @@
 #include <time.h>
 #include <unistd.h>
 
-// the given function
+/* the given function */
 static void *hard_work(void *work) {
 	int *amount = (int*) work;
 	struct timespec t = {
@@ -16,7 +16,7 @@ static void *hard_work(void *work) {
 	return NULL;
 }
 
-// calculate execution time
+/* calculate execution time */
 struct timespec diff(struct timespec start, struct timespec end) {
 	struct timespec temp;
 	if ((end.tv_nsec-start.tv_nsec)<0) {
@@ -29,33 +29,28 @@ struct timespec diff(struct timespec start, struct timespec end) {
 	return temp;
 }
 
-void run_processes(int num_processes, int num_runs, pid_t *pids);
-
-void remove_zombies();
-
-// launch child processes
+/* launch child processes */
 void child_launch(pid_t *pids, int limit) {
 	for (int i = 0; i < limit; i++) {
 		if ((pids[i] = fork()) == 0) {
 			if (pids[i] < 0) {
 				printf("fork create error: error_code = %d\n", getpid());
 			} else if (pids[i] == 0) {
-				printf("Child pid = %d, ppid = %d is created.\n", getpid(), getppid());
-				hard_work(&i);
+				hard_work(&pids[i]);
 				exit(0);
 			}
 		}
 	}
 }
 
-// parent wait for children
-void parent_wait(pid_t *pids, int limit) {
+/* parent wait for children */
+void parent_wait(pid_t const *pids, int limit) {
 	for (int i = 0; i < limit; i++) {
-		wait(&pids[i]);
+		wait((pid_t *)&pids[i]);
 	}
 }
 
-// run_threads running all processes
+/* run_threads running all processes */
 void run_processes(int num_processes, int num_runs, pid_t *pids) {
 	for (int i = 0; i < num_processes / num_runs; i++) {
 		child_launch(pids, num_runs);
@@ -70,7 +65,7 @@ void run_processes(int num_processes, int num_runs, pid_t *pids) {
 	}
 }
 
-// exit parent after all children ends, remove zombies
+/* exit parent after all children ends, remove zombies */
 void remove_zombies() {
 	while (1) {
 		int flag = wait(NULL);
@@ -83,6 +78,7 @@ void remove_zombies() {
 	}
 }
 
+/* main function */
 int main(int argc, char *argv[]) {
 	// ensure correct input parameters
 	if (argc < 2) {
@@ -100,19 +96,11 @@ int main(int argc, char *argv[]) {
 	pid_t pids[num_processes];
 	run_processes(num_processes, num_runs, pids);
 	remove_zombies();
-
+	
 	// count time ends
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time2);
-	printf("\nExecuting all processes costs %ld micro seconds.\n", diff(time1,time2).tv_nsec/1000);
+	printf("\nRun experiment with %s processes, %s of them at a time.\n", argv[1], argv[2]);
+	printf("Executing all processes costs %ld microseconds.\n\n", diff(time1,time2).tv_nsec/1000);
 
 	return 0;
 }
-
-
-
-
-
-
-
-
-
