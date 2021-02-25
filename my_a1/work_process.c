@@ -5,7 +5,7 @@
 #include <time.h>
 #include <unistd.h>
 
-int c = 1; // constant for hard_work()
+int c = 1;	// constant for hard_work()
 
 /* the given function */
 static void *hard_work(void *work) {
