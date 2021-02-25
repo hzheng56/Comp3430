@@ -3,6 +3,8 @@
 #include <time.h>
 #include <pthread.h>
 
+int c = 1; // constant for hard_work()
+
 /* the given function */
 static void *hard_work(void *work) {
 	int *amount = (int*) work;
@@ -32,7 +34,7 @@ void thread_launch(pthread_t const *tids, int limit) {
 	for (int i = 0; i < limit; i++) {
 		pthread_attr_t attr;
 		pthread_attr_init(&attr);
-		int flag = pthread_create((pthread_t *)&tids[i], &attr, hard_work, (void *) &i);
+		int flag = pthread_create((pthread_t *)&tids[i], &attr, hard_work, &c);
 		if (flag != 0) {
 			printf("pthread_create error: error_code = %d\n", flag);
 			exit(1);

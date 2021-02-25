@@ -5,6 +5,8 @@
 #include <time.h>
 #include <unistd.h>
 
+int c = 1; // constant for hard_work()
+
 /* the given function */
 static void *hard_work(void *work) {
 	int *amount = (int*) work;
@@ -36,7 +38,7 @@ void child_launch(pid_t *pids, int limit) {
 			if (pids[i] < 0) {
 				printf("fork create error: error_code = %d\n", getpid());
 			} else if (pids[i] == 0) {
-				hard_work(&pids[i]);
+				hard_work(&c);
 				exit(0);
 			}
 		}
