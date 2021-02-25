@@ -1,0 +1,18 @@
+Name: Hao Zheng
+Student number: 7870389
+Course: COMP3430, section A02/B04
+Instructor: Franklin Bristow
+Assignment: Assignment 1
+Remarks: This is the description file for assignment 1 about compiling and running programs through the terminal, with remotely log-in `aviary` server.
+
+Hypothesis: Processes require longer time than threads to create.
+Concurrency design: first, launch the processes/threads in one concurrency (aka the y of processes/threads), then repeat this by x/y times in order to launch x processes/threads eventually. Time complexity is supposed to be O(n^2) since 2 for loops are applied.
+
+Operation procedure on Terminal:
+	1. Connect with `aviary` server.
+	2. Input `cd COMP3430/ATS1` to get into the directory contains assignment 1 files. In the case of marker, get into the directory where my files go to after handin.
+	3. Input `make` to build both `work_process.c` and `work_thread.c`. This will generate two executables named `process` and `thread` respectively.
+	4. Input `process` followed by 2 integers as the arguments representing #processes and #concurrency to run the program `work_process.c`.
+	5. Input `thread ` followed by 2 integers as the arguments representing #threads and #concurrency to run the program `work_thread.c `.
+	6. To remove the executables, input `make clean`.
+	7. The file `MyReport.md` contains my answers for the 3 questions and analysis.
