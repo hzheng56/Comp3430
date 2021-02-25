@@ -54,7 +54,7 @@ void thread_wait(pthread_t const *tids, int limit) {
 }
 
 /* run_threads running all threads */
-void run_threads(int num_threads, int num_runs, pthread_t *tids) {
+void run_threads(pthread_t *tids, int num_runs, int num_threads) {
 	for (int i = 0; i < num_threads/num_runs; i++) {
 		thread_launch(tids, num_runs);
 		thread_wait(tids, num_runs);
@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
 	int num_threads = atoi(argv[1]);
 	int num_runs = atoi(argv[2]);
 	pthread_t tids[num_threads];	// declare all threads
-	run_threads(num_threads, num_runs, tids);
+	run_threads(tids, num_runs, num_threads);
 	
 	// count time ends
 	clock_gettime(CLOCK_THREAD_CPUTIME_ID, &time2);

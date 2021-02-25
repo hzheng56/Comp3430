@@ -53,7 +53,7 @@ void parent_wait(pid_t const *pids, int limit) {
 }
 
 /* run_threads running all processes */
-void run_processes(int num_processes, int num_runs, pid_t *pids) {
+void run_processes(pid_t *pids, int num_runs, int num_processes) {
 	for (int i = 0; i < num_processes / num_runs; i++) {
 		child_launch(pids, num_runs);
 		parent_wait(pids, num_runs);
@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
 	int num_processes = atoi(argv[1]);
 	int num_runs = atoi(argv[2]);
 	pid_t pids[num_processes];
-	run_processes(num_processes, num_runs, pids);
+	run_processes(tids, num_runs, num_processes);
 	remove_zombies();
 	
 	// count time ends
