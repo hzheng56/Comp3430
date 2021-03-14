@@ -1,7 +1,7 @@
 CC = clang
 CFLAGS = -Wall -Wpedantic -Wextra -Werror -g
 
-PROG1 = a1q1
+PROG1 = a2q1
 PROG2 = a2q2
 
 #Compiling rules
