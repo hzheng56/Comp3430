@@ -3,7 +3,7 @@
 #include <time.h>
 #include <pthread.h>
 
-int c = 1;	// constant for hard_work()
+int c = 1; // constant for hard_work()
 
 /* the given function */
 static void *hard_work(void *work) {
@@ -68,8 +68,8 @@ void run_threads(pthread_t *tids, int num_runs, int num_threads) {
 
 /* main function */
 int main(int argc, char *argv[]) {
-	// ensure correct input parameters
-	if (argc < 2) {
+	// must pass 2 arguments
+	if (argc != 3) {
 		fprintf(stderr, "usage: ./thread <#threads> <#threads per time>\n");
 		exit(1);
 	}

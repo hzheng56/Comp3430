@@ -1,5 +1,5 @@
 CC = clang
-CFLAGS = -g -Wall -Wpedantic -Wextra -Werror
+CFLAGS = -Wall -Wpedantic -Wextra -Werror -g
 
 PROG1 = process
 PROG2 = thread
@@ -9,6 +9,8 @@ SRCS2 = work_thread.c
 #Compiling rules
 
 all: $(PROG1) $(PROG2)
+p1: $(PROG1)
+p2: $(PROG2)
 
 $(PROG1): $(SRCS1)
 	$(CC) $(CFLAGS) -o $(PROG1) $(SRCS1)

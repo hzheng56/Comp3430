@@ -5,7 +5,7 @@
 #include <time.h>
 #include <unistd.h>
 
-int c = 1;	// constant for hard_work()
+int c = 1; // constant for hard_work()
 
 /* the given function */
 static void *hard_work(void *work) {
@@ -82,8 +82,8 @@ void remove_zombies() {
 
 /* main function */
 int main(int argc, char *argv[]) {
-	// ensure correct input parameters
-	if (argc < 2) {
+	// must pass 2 arguments
+	if (argc != 3) {
 		fprintf(stderr, "usage: ./process <#processes> <#processes per time>\n");
 		exit(1);
 	}
@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
 	int num_processes = atoi(argv[1]);
 	int num_runs = atoi(argv[2]);
 	pid_t pids[num_processes];
-	run_processes(tids, num_runs, num_processes);
+	run_processes(pids, num_runs, num_processes);
 	remove_zombies();
 	
 	// count time ends
