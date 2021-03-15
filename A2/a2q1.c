@@ -83,10 +83,19 @@ int main(int argc, char *argv[]) {
 		dup2(fd[1], STDOUT_FILENO);	// let the write end of pipe be stdout
 		close(fd[1]);	// no need the write end after dup2
 
-		/* execute argv[1] in the child process */
-		if (execvp(argv[1], argv+1) < 0) {
-			perror("exec error!\n");
-			exit(1);
+		/* execute argv[n] in the child process */
+		char* args[argc];	// contains all argv
+		if (argc > 1) {
+			for (int i = 1; i < argc; i++) {
+				args[i - 1] = strdup(argv[i]);
+			}
+			args[argc - 1] = NULL;
+			for (int j = 0; j < argc; j++) {
+				if (execvp(args[j], args) < 0) {
+					perror("exec error!\n");
+					exit(1);
+				}
+			}
 		}
 	} else {
 		/* parent process, takes input from read end */
