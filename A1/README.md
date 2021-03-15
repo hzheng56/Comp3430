@@ -14,8 +14,8 @@
 
 ### Concurrency design:
 
-- first, launch the processes/threads in one concurrency (aka the y of processes/threads), then repeat this by x/y times in order to launch x processes/threads eventually.
-- Time complexity is supposed to be O(n^2) since 2 for loops are applied.
+- first, launch the processes/threads in one concurrency (aka the `y` of processes/threads), then repeat this by `x/y` times in order to launch `x` processes/threads eventually.
+- Time complexity is supposed to be `O(n^2)` since 2 for loops are applied.
 
 ### Operation procedure on Terminal:
 
