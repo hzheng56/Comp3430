@@ -55,13 +55,25 @@ int main(int argc, char *argv[]) {
 	} else {
 		/* parent process, send 2 same/different signals */
 		if (atoi(argv[1]) == 1) {
-			sleep(3);
-			kill(pid, SIGUSR1);
-			kill(pid, SIGUSR1);
+			char* rec = "Consecutive 2 SIGUSR1 sending...\n";
+			sleep(3); // ensure child process runs first
+			write(STDOUT_FILENO, rec, strlen(rec)+1);
+			if (kill(pid, SIGUSR1) == -1) {
+				perror("kill error!\n");
+			}
+			if (kill(pid, SIGUSR1) == -1) {
+				perror("kill error!\n");
+			}
 		} else if (atoi(argv[1]) == 2) {
-			sleep(3);
-			kill(pid, SIGUSR1);
-			kill(pid, SIGUSR2);
+			char* rec = "SIGUSR1 then SIGUSR2 sending...\n";
+			sleep(3); // ensure child process runs first
+			write(STDOUT_FILENO, rec, strlen(rec)+1);
+			if (kill(pid, SIGUSR1) == -1) {
+				perror("kill error!\n");
+			}
+			if (kill(pid, SIGUSR2) == -1) {
+				perror("kill error!\n");
+			}
 		}
 	}
 	return 0;

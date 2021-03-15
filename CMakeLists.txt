@@ -8,7 +8,7 @@ include_directories(.
 )
 
 add_executable(Comp3430
-		A2/a2q1.c
+		A2/a2q2.c
 #		A2/q1.c
 #		A1/work_process.c
 )
