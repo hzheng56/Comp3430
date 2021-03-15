@@ -8,7 +8,7 @@
 pid_t pid;		// child process pid
 
 /* function: handle signals */
-void signal_handler(int sig) {
+static void signal_handler(int sig) {
 	if (sig == SIGUSR1) {
 		char* rec1 = "SIGUSR1 handled.\n";
 		write(STDOUT_FILENO, rec1, strlen(rec1)+1);

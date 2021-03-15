@@ -30,7 +30,7 @@ static void str_replace(const char* old, const char* new) {
 }
 
 /* function: handle signals */
-void signal_handler(int sig) {
+static void signal_handler(int sig) {
 	if (sig == SIGUSR1) {
 		key_str = "dogDOG";
 		new_str = "catCAT";
