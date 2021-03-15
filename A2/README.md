@@ -16,7 +16,7 @@
 	- Input `./a2q1 lynx http://lolcats.com` to test opening a webpage in Linux (may require login `aviary` server to see the interface).
 3. For `a2q2.c`:
 	- Input `./a2q2 1`, the parent process sends 2 of `SIGUSR1` to the child process.
-	- nput `./a2q2 2`, the parent process send 2 different signals (`SIGUSR1` then `SIGUSR2`) to the child process.
+	- Input `./a2q2 2`, the parent process send 2 different signals (`SIGUSR1` then `SIGUSR2`) to the child process.
 4. To remove the executables, input `make clean`.
 5. The file `MyReport.md` contains my answers for the 2 questions.
 
