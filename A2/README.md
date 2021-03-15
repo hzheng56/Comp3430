@@ -6,7 +6,7 @@
 - Course: COMP3430, section A02/B04
 - Instructor: Franklin Bristow
 - Assignment: Assignment 2
-- Remarks: This is the description file for Assignment 2 Question 2.
+- Remarks: This is the description file for Assignment 2.
 
 ### Operation procedure on Terminal:
 
